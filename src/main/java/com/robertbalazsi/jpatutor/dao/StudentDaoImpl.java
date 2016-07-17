@@ -11,11 +11,20 @@ import java.util.List;
 @Repository
 public class StudentDaoImpl implements StudentDao {
 
+    private static final int BATCH_SIZE = 200;
+
     @PersistenceContext
     private EntityManager em;
 
     public List<Student> getAllStudents() {
         return em.createNamedQuery(Student.GET_ALL, Student.class)
+                .getResultList();
+    }
+
+    public List<Student> getSubset(long minId) {
+        return em.createNamedQuery(Student.GET_SUBSET, Student.class)
+                .setParameter("minId", minId)
+                .setMaxResults(BATCH_SIZE)
                 .getResultList();
     }
 

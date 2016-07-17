@@ -27,6 +27,8 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired StudentDao studentDao;
     @Autowired LecturerDao lecturerDao;
 
+    @Autowired BatchProcessor batchProcessor;
+
     @Transactional
     public void fillData() {
         Lecturer[] lecturers = generateAndStoreLecturers();
@@ -39,6 +41,14 @@ public class FacultyServiceImpl implements FacultyService {
     @Transactional
     public List<Student> getStudentsByName(String name) {
         return studentDao.getByName(name);
+    }
+
+//    @Transactional
+    public void processStudents() {
+        long minId = Long.MIN_VALUE;
+        do {
+            minId = batchProcessor.queryAndProcessStudentsBatch(minId);
+        } while (minId > 0);
     }
 
     private Student[] generateAndStoreStudents(Course[] courses) {

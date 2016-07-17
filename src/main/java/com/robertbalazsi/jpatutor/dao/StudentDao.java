@@ -9,6 +9,8 @@ public interface StudentDao {
 
     List<Student> getAllStudents();
 
+    List<Student> getSubset(long maxId);
+
     List<Student> getByName(String name);
 
     List<Student> getStudentsLecturedBy(Lecturer lecturer);

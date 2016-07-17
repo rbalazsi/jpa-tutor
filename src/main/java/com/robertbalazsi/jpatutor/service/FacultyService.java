@@ -11,5 +11,7 @@ public interface FacultyService {
 
     void fillData();
 
+    void processStudents();
+
     List<Student> getStudentsByName(String name);
 }

@@ -27,13 +27,14 @@ public class FacultyManagerApp {
         app.run();
     }
 
-    // The key to solving the LazyInitializationException!:
-    @Transactional
     public void run() {
         // TODO: comment out below to fill the data
         // facultyService.fillData();
-        List<Student> students = facultyService.getStudentsByName("Student_10");
-        List<Course> studentCourses = students.get(0).getCourses();
-        studentCourses.size();
+
+//        List<Student> students = facultyService.getStudentsByName("Student_10");
+//        List<Course> studentCourses = students.get(0).getCourses();
+//        studentCourses.size();
+
+        facultyService.processStudents();
     }
 }

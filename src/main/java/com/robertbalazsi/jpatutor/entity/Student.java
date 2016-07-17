@@ -10,16 +10,15 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Student.GET_ALL, query = "SELECT st FROM Student st "),
-
+        @NamedQuery(name = Student.GET_SUBSET, query = "SELECT st FROM Student st WHERE st.id > :minId"),
         @NamedQuery(name = Student.GET_BY_NAME, query = "SELECT st FROM Student st WHERE st.name = :name"),
-
-        //TODO: the key of the demo!!!
         @NamedQuery(name = Student.GET_BY_LECTURER,
                 query = "SELECT st FROM Student st JOIN FETCH st.courses c JOIN FETCH c.lecturer lect WHERE lect.id = :lectId")
 })
 public class Student extends AbstractEntity {
 
     public static final String GET_ALL = "Student.GET_ALL";
+    public static final String GET_SUBSET = "Student.GET_SUBSET";
     public static final String GET_BY_LECTURER = "Student.GET_BY_LECTURER";
     public static final String GET_BY_NAME = "Student.GET_BY_NAME";
 
