@@ -22,6 +22,10 @@ public class Lecturer extends AbstractEntity {
     @OneToMany(mappedBy = "lecturer")
     private List<Course> courses = new ArrayList<Course>();
 
+    public Lecturer() {
+        /* needed by JPA */
+    }
+
     public Lecturer(String name) {
         this.name = name;
     }

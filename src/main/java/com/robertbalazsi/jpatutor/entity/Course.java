@@ -24,6 +24,10 @@ public class Course extends AbstractEntity {
     @ManyToMany(mappedBy = "courses")
     private List<Student> students = new ArrayList<Student>();
 
+    public Course() {
+        /* needed by JPA */
+    }
+
     public Course(String name) {
         this.name = name;
     }

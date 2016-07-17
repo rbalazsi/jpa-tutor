@@ -9,6 +9,8 @@ public interface StudentDao {
 
     List<Student> getAllStudents();
 
+    List<Student> getByName(String name);
+
     List<Student> getStudentsLecturedBy(Lecturer lecturer);
 
     void store(Student student);

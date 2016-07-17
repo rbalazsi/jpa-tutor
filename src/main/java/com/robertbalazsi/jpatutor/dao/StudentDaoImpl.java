@@ -19,6 +19,12 @@ public class StudentDaoImpl implements StudentDao {
                 .getResultList();
     }
 
+    public List<Student> getByName(String name) {
+        return em.createNamedQuery(Student.GET_BY_NAME, Student.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
     public List<Student> getStudentsLecturedBy(Lecturer lecturer) {
         return em.createNamedQuery(Student.GET_BY_LECTURER, Student.class)
                 .setParameter("lectId", lecturer.getId())

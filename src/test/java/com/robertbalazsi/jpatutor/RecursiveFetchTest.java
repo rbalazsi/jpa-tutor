@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@ContextConfiguration(locations = {"classpath:/application-context.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 public class RecursiveFetchTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired

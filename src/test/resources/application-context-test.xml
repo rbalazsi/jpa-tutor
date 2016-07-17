@@ -2,23 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd
-    http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.robertbalazsi.jpatutor" />
-	<tx:annotation-driven />
 
 	<bean id="entityManagerFactory"
 		  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean ">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.robertbalazsi.jpatutor.entity" />
-		<property name="persistenceUnitName" value="prodUnit" />
+		<property name="persistenceUnitName" value="testUnit" />
 		<property name="jpaDialect" ref="jpaDialect" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -28,20 +24,18 @@
 
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
 
 	<bean id="dataSource"
 		  class="org.springframework.jdbc.datasource.DriverManagerDataSource ">
-		<property name="username" value="root" />
-		<property name="password" value="mitnick" />
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/faculty" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1" />
 	</bean>
 
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect " />
