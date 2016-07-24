@@ -16,6 +16,12 @@ public class StudentDaoImpl implements StudentDao {
     @PersistenceContext
     private EntityManager em;
 
+    public Student getById(long id) {
+        return em.createNamedQuery(Student.GET_BY_ID, Student.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
     public List<Student> getAllStudents() {
         return em.createNamedQuery(Student.GET_ALL, Student.class)
                 .getResultList();

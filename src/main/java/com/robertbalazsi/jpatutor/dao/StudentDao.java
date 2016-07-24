@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface StudentDao {
 
+    Student getById(long id);
+
     List<Student> getAllStudents();
 
     List<Student> getSubset(long maxId);
